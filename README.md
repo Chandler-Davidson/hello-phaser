@@ -1,16 +1,6 @@
-# Phaser Bun TypeScript Template
+# Phaser Bun TypeScript Template - Packaged
 
-This is a Phaser 3 project template that uses Vite and Bun for bundling. It supports hot-reloading for quick development workflow, includes TypeScript support and scripts to generate production-ready builds.
-
-### Versions
-
-This template has been updated for:
-
-- [Phaser 3.90.0](https://github.com/phaserjs/phaser)
-- [Vite 6.3.1](https://github.com/vitejs/vite)
-- [TypeScript 5.7.2](https://github.com/microsoft/TypeScript)
-
-![screenshot](screenshot.png)
+This is a fork of the Phaser 3 project template using Vite and Bun. It is inteded to be used to publish your game to npm and hosted on another project. Original template project: https://github.com/phaserjs/template-bun.
 
 ## Requirements
 
@@ -23,16 +13,7 @@ This template has been updated for:
 | `bun install` | Install project dependencies |
 | `bun run dev` | Launch a development web server |
 | `bun run build` | Create a production build in the `dist` folder |
-| `bun run dev-nolog` | Launch a development web server without sending anonymous data (see "About log.js" below) |
-| `bun run build-nolog` | Create a production build in the `dist` folder without sending anonymous data (see "About log.js" below) |
-
-## Writing Code
-
-After cloning the repo, run `bun install` from your project directory. Then, you can start the local development server by running `bun run dev`.
-
-The local development server runs on `http://localhost:8080` by default. Please see the Vite documentation if you wish to change this, or add SSL support.
-
-Once the server is running you can edit any of the files in the `src` folder. Vite will automatically recompile your code and then reload the browser.
+| `bun publish` | Triggers the npm package publish flow. This builds the project, bumps the version, and publishes the package. |
 
 ## Template Project Structure
 
@@ -50,9 +31,7 @@ We have provided a default project structure to get you started. This is as foll
 
 ## Handling Assets
 
-Vite supports loading assets via JavaScript module `import` statements.
-
-This template provides support for both embedding assets and also loading them from a static folder. To embed an asset, you can import it at the top of the JavaScript file you are using it in:
+All assets must be bundled by Vite via JavaScript module `import` statements, as to be included in the npm package.
 
 ```js
 import logoImg from './assets/logo.png'
@@ -66,10 +45,6 @@ preload ()
     //  This is an example of an imported bundled image.
     //  Remember to import it at the top of this file
     this.load.image('logo', logoImg);
-
-    //  This is an example of loading a static image
-    //  from the public/assets folder:
-    this.load.image('background', 'assets/bg.png');
 }
 ```
 
@@ -78,60 +53,6 @@ When you issue the `bun run build` command, all static assets are automatically 
 ## Deploying to Production
 
 After you run the `bun run build` command, your code will be built into a single bundle and saved to the `dist` folder, along with any other assets your project imported, or stored in the public assets folder.
-
-In order to deploy your game, you will need to upload *all* of the contents of the `dist` folder to a public facing web server.
-
-## Customizing the Template
-
-### Vite
-
-If you want to customize your build, such as adding plugin (i.e. for loading CSS or fonts), you can modify the `vite/config.*.mjs` file for cross-project changes, or you can modify and/or create new configuration files and target them in specific bun tasks inside of `package.json`. Please see the [Vite documentation](https://vitejs.dev/) for more information.
-
-## About log.js
-
-If you inspect our node scripts you will see there is a file called `log.js`. This file makes a single silent API call to a domain called `gryzor.co`. This domain is owned by Phaser Studio Inc. The domain name is a homage to one of our favorite retro games.
-
-We send the following 3 pieces of data to this API: The name of the template being used (vue, react, etc). If the build was 'dev' or 'prod' and finally the version of Phaser being used.
-
-At no point is any personal data collected or sent. We don't know about your project files, device, browser or anything else. Feel free to inspect the `log.js` file to confirm this.
-
-Why do we do this? Because being open source means we have no visible metrics about which of our templates are being used. We work hard to maintain a large and diverse set of templates for Phaser developers and this is our small anonymous way to determine if that work is actually paying off, or not. In short, it helps us ensure we're building the tools for you.
-
-However, if you don't want to send any data, you can use these commands instead:
-
-Dev:
-
-```bash
-bun run dev-nolog
-```
-
-Build:
-
-```bash
-bun run build-nolog
-```
-
-Or, to disable the log entirely, simply delete the file `log.js` and remove the call to it in the `scripts` section of `package.json`:
-
-Before:
-
-```json
-"scripts": {
-    "dev": "bun log.js dev & bunx --bun vite --config vite/config.dev.mjs",
-    "build": "bun log.js build & bunx --bun vite build --config vite/config.prod.mjs"
-},
-```
-
-After:
-
-```json
-"scripts": {
-    "dev": "bunx --bun vite --config vite/config.dev.mjs",
-    "build": "bunx --bun vite build --config vite/config.prod.mjs"
-},
-```
-
-Either of these will stop `log.js` from running. If you do decide to do this, please could you at least join our Discord and tell us which template you're using! Or send us a quick email. Either will be super-helpful, thank you.
 
 ## Join the Phaser Community!
 
