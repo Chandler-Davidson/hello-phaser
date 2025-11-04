@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import bg from '../../../public/assets/bg.png'
+import bg from '../../assets/bg.png'
 
 export class Boot extends Scene
 {
